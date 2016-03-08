@@ -39,9 +39,9 @@ Vehicle.prototype.moveback = function() {
     this.div.animate({left: '10px'}, 5000);
 }
 
-// Super Clas Stop ------------------------------------------
+// Super Class Stop ------------------------------------------
 
-// Child Classes Start --------------------------------------
+// Child Class Car Start --------------------------------------
 var Car = function () {
     //Die.call(this, 'Hello');
     //this.value = num;
@@ -60,6 +60,8 @@ Car.prototype.move = function() {
     var ww = window.innerWidth;
     this.div.animate({left: ww + 'px'}, 5000); //Same as Vehicle speed
 }
+
+//Child Class Car Stop, CopCar Start
 
 var CopCar = function () {
     //Die.call(this, 'Hello');
@@ -80,16 +82,56 @@ CopCar.prototype.move = function() {
     this.div.animate({left: ww + 'px'}, 5000); //Same as Vehicle speed
 }
 
-// Child Classes Stop ---------------------------------------
+// Child Class CopCar Stop, Motorcycle Begin ---------------------------------------
+var Motorcycle = function () {
+    //Die.call(this, 'Hello');
+    //this.value = num;
+    console.log('inside Motorcycle');
+}
+
+Motorcycle.prototype = Object.create(Vehicle.prototype);
+Motorcycle.prototype.constructor = Motorcycle; //This is the function that calls car
+Motorcycle.prototype.insert = function() {
+    this.div = document.createElement('div');
+    this.div.className = 'myMotorcycle';
+    //this.div.style.backgroundColor = 'red'; --Moved to CSS
+}
+Motorcycle.prototype.move = function() {
+    this.div = $('.myMotorcycle');
+    var ww = window.innerWidth;
+    this.div.animate({left: ww + 'px'}, 5000); //Same as Vehicle speed
+}
+// Child Class Motorcycle Stop, Tank Begin ---------------------------------------
+var Tank = function () {
+    //Die.call(this, 'Hello');
+    //this.value = num;
+    console.log('inside Tank');
+}
+
+Tank.prototype = Object.create(Vehicle.prototype);
+Tank.prototype.constructor = Motorcycle; //This is the function that calls car
+Tank.prototype.insert = function() {
+    this.div = document.createElement('div');
+    this.div.className = 'myTank';
+    //this.div.style.backgroundColor = 'red'; --Moved to CSS
+}
+Tank.prototype.move = function() {
+    this.div = $('.myTank');
+    var ww = window.innerWidth;
+    this.div.animate({left: ww + 'px'}, 5000); //Same as Vehicle speed
+}
+// Child Class Tank Stop. --------------------------
+
 var vehicleArray = [];
 
 // Function Calls for Button types --------------------------
-function newVehicle() {
-    //Vehicle.call(this);
-    var vehicle = new Vehicle();
-    vehicle.insert();
-    vehicleArray.push(vehicle);
-}
+
+// function newVehicle() { 
+//     //Vehicle.call(this);
+//     var vehicle = new Vehicle();
+//     vehicle.insert();
+//     vehicleArray.push(vehicle);
+// }
 
 function newCar() {
     //Vehicle.call(this);
@@ -101,6 +143,20 @@ function newCar() {
 function newCopCar() {
     //Vehicle.call(this);
     var vehicle = new CopCar();
+    vehicle.insert();
+    vehicleArray.push(vehicle);
+}
+
+function newMotorcycle() {
+    //Vehicle.call(this);
+    var vehicle = new Motorcycle();
+    vehicle.insert();
+    vehicleArray.push(vehicle);
+}
+
+function newTank() {
+    //Vehicle.call(this);
+    var vehicle = new Tank();
     vehicle.insert();
     vehicleArray.push(vehicle);
 }
