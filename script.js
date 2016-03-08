@@ -5,8 +5,6 @@ var Vehicle = function(className) {
 }
 
 Vehicle.prototype.insert = function() {
-    //this.div = document.createElement('div');
-    //this.div.className = 'myVehicle';
     this.div.style.position = 'absolute';
     var ww = window.innerWidth;
     var wh = window.innerHeight;
@@ -19,13 +17,11 @@ Vehicle.prototype.insert = function() {
 }
 Vehicle.prototype.move = function() {
     this.div = $('.myVehicle');
-    // this.div = document.getElementsByClassName('myVehicle');
     var ww = window.innerWidth;
     this.div.animate({left: ww + 'px'}, 5000);
 }
 Vehicle.prototype.moveback = function() {
     this.div = $('.myVehicle');
-    // this.div = document.getElementsByClassName('myVehicle');
     var ww = window.innerWidth;
     this.div.animate({left: '10px'}, 5000);
 }
@@ -47,8 +43,6 @@ var Car = function () {
 Car.prototype = Object.create(Vehicle.prototype);
 Car.prototype.constructor = Car; //This is the function that calls car
 Car.prototype.insert = function() {
-    //this.div = document.createElement('div');
-    //this.div.className = 'myCar';
     this.div.style.position = 'absolute';
     var ww = window.innerWidth;
     var wh = window.innerHeight;
@@ -58,7 +52,7 @@ Car.prototype.insert = function() {
 
 }
 Car.prototype.move = function() {
-    this.div = $('myCar');
+    this.div = $('.myCar');
     var ww = window.innerWidth;
     this.div.animate({left: ww + 'px'}, 5000); //Same as Vehicle speed
 }
@@ -79,8 +73,6 @@ var CopCar = function () {
 CopCar.prototype = Object.create(Car.prototype);
 CopCar.prototype.constructor = CopCar;
 CopCar.prototype.insert = function() {
-    //this.div = document.createElement('div');
-    //this.div.className = 'myCopCar';
     this.div.style.position = 'absolute';
     var ww = window.innerWidth;
     var wh = window.innerHeight;
@@ -92,7 +84,8 @@ CopCar.prototype.insert = function() {
 CopCar.prototype.move = function() {
     this.div = $('.myCopCar');
     var ww = window.innerWidth;
-    this.div.animate({left: ww + 'px'}, 5000); //Same as Vehicle speed
+    var wh = window.innerHeight;
+    this.div.animate({top: wh + 'px'}, 5000); //Same as Vehicle speed
 }
 
 function addCopCar() {
@@ -111,19 +104,18 @@ var Motorcycle = function () {
 Motorcycle.prototype = Object.create(Vehicle.prototype);
 Motorcycle.prototype.constructor = Motorcycle; //This is the function that calls car
 Motorcycle.prototype.insert = function() {
-    // this.div = document.createElement('div');
-    // this.div.className = 'myMotorcycle';
     this.div.style.position = 'absolute';
     var ww = window.innerWidth;
     var wh = window.innerHeight;
-    this.div.style.left = Math.floor(Math.random() * (ww - 140)) + 'px';
-    this.div.style.top = Math.floor(Math.random() * (wh - 100)) + 'px';
+    this.div.style.left = Math.floor(Math.random() * (ww - 60)) + 'px';
+    this.div.style.top = Math.floor(Math.random() * (wh - 40)) + 'px';
     document.getElementById('gameArea').appendChild(this.div);
 }
 Motorcycle.prototype.move = function() {
     this.div = $('.myMotorcycle');
     var ww = window.innerWidth;
-    this.div.animate({left: ww + 'px'}, 5000); //Same as Vehicle speed
+    var wh = window.innerWidth;
+    this.div.animate({left: ww + 'px', top: wh + 'px'}, 2500); //Same as Vehicle speed
 }
 
 function addMotorcycle() {
@@ -142,8 +134,6 @@ var Tank = function () {
 Tank.prototype = Object.create(Vehicle.prototype);
 Tank.prototype.constructor = Motorcycle; //This is the function that calls car
 Tank.prototype.insert = function() {
-    // this.div = document.createElement('div');
-    // this.div.className = 'myTank';
     this.div.style.position = 'absolute';
     var ww = window.innerWidth;
     var wh = window.innerHeight;
@@ -154,7 +144,7 @@ Tank.prototype.insert = function() {
 Tank.prototype.move = function() {
     this.div = $('.myTank');
     var ww = window.innerWidth;
-    this.div.animate({left: ww + 'px'}, 5000); //Same as Vehicle speed
+    this.div.animate({left: ww + 'px'}, 10000); //Same as Vehicle speed
 }
 
 function addTank() {
