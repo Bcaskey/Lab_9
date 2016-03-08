@@ -13,10 +13,40 @@
     -webkit-border-radius: 5px;
 }
 
+.myCar {
+    font-family: Arial, Helvetica, sans-serif;
+    color: #000;
+    font-size: 30px;
+    line-height: 60px;
+    text-align: center;
+    padding-top: 0px;
+    margin: 4px;
+    border: 1px solid #000;
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    background-color: red;
+}
+
+.myCopCar {
+    font-family: Arial, Helvetica, sans-serif;
+    color: #000;
+    font-size: 30px;
+    line-height: 60px;
+    text-align: center;
+    padding-top: 0px;
+    margin: 4px;
+    border: 1px solid #000;
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    background-color: blue;
+}
+
 .topDiv {
     margin: auto;
-    width: 19%;
-    display: inline-block;
+    width: 100%;
+    display: block;
 }
 
 
@@ -25,12 +55,12 @@
 }
 
 button {
-    width: 100px;
-    padding: 15px 32px;
+    width: 140px;
+    padding: 5px 5px;
     text-align: center;
     text-decoration: none;
-    font-size: 13px;
-    display: block;
+    font-size: 12px;
+    float: left;
     margin: auto;
 }
 
