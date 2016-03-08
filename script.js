@@ -11,6 +11,9 @@ Vehicle.prototype.insert = function() {
     this.div.style.left = Math.floor(Math.random() * (ww - 140)) + 'px';
     this.div.style.top = Math.floor(Math.random() * (wh - 100)) + 'px';
     //console.log(Math.floor(Math.random() * ww) - 140);
+    var num = '1';
+    this.div.innerHTML = num;
+    console.log(num);
     this.move;
     this.moveback;
     document.getElementById('gameArea').appendChild(this.div);
@@ -30,7 +33,7 @@ function addVehicle() {
     var vehicle = new Vehicle('myVehicle');
     vehicle.insert();
     vehicleArray.push(vehicle);
-    console.log('inside vehicle');
+    //console.log('inside vehicle');
 }
 
 // Super Class Stop ----------------------------------------------------
@@ -48,6 +51,9 @@ Car.prototype.insert = function() {
     var wh = window.innerHeight;
     this.div.style.left = Math.floor(Math.random() * (ww - 140)) + 'px';
     this.div.style.top = Math.floor(Math.random() * (wh - 100)) + 'px';
+    var num = '1';
+    this.div.innerHTML = '2';
+    console.log('Car Damage');
     document.getElementById('gameArea').appendChild(this.div);
 
 }
@@ -61,8 +67,10 @@ function addCar() {
     var addCar = new Car();
     addCar.insert();
     vehicleArray.push(addCar);
-    console.log('inside car');
+    //console.log('inside car');
 }
+
+
 
 //Child Class COPCAR COPCAR COPCAR COPCAR COPCAR  ------------------------
 
@@ -85,14 +93,21 @@ CopCar.prototype.move = function() {
     this.div = $('.myCopCar');
     var ww = window.innerWidth;
     var wh = window.innerHeight;
-    this.div.animate({top: wh + 'px'}, 5000); //Same as Vehicle speed
+    //this.div.fadeTo(1000, 0.1).fadeTo(1000, 1.0);
+    this.div.animate({top: wh + 'px'}, 5000);
+        // var blnkCar = $('div');
+        //     function runIt() {
+        //         blnkCar.animate({opacity:'+=1'}, 400);
+        //         blnkCar.animate({opacity:'-=0.7'}, 400, runIt);
+        //     }
+        // runIt();
 }
 
 function addCopCar() {
     var vehicle = new CopCar();
     vehicle.insert();
     vehicleArray.push(vehicle);
-    console.log('inside cop car');
+    //console.log('inside cop car');
 }
 
 // Child Class MOTORCYCLE MOTORCYCLE MOTORCYCLE  ------------------------
@@ -122,7 +137,7 @@ function addMotorcycle() {
     var vehicle = new Motorcycle();
     vehicle.insert();
     vehicleArray.push(vehicle);
-    console.log('inside Motorcycle');
+    //console.log('inside Motorcycle');
 }
 
 // Child Class TANK TANK TANK TANK TANK --------------------------------
@@ -151,7 +166,7 @@ function addTank() {
     var vehicle = new Tank();
     vehicle.insert();
     vehicleArray.push(vehicle);
-    console.log('inside Tank');
+    //console.log('inside Tank');
 }
 
 // END VEHICLES ---------------------------------
