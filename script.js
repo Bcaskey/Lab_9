@@ -10,19 +10,41 @@ Vehicle.prototype.insert = function() {
     var wh = window.innerHeight;
     this.div.style.left = Math.floor(Math.random() * (ww - 140)) + 'px';
     this.div.style.top = Math.floor(Math.random() * (wh - 100)) + 'px';
-    //console.log(Math.floor(Math.random() * ww) - 140);
     var num = '1';
-    this.div.innerHTML = num;
-    console.log(num);
+    this.div.innerHTML = '2';
+    console.log('Car Damage');
     this.move;
     this.moveback;
     document.getElementById('gameArea').appendChild(this.div);
 }
+
 Vehicle.prototype.move = function() {
     this.div = $('.myVehicle');
     var ww = window.innerWidth;
-    this.div.animate({left: ww + 'px'}, 5000);
+    function goRight() {
+        $(".myVehicle").animate({
+        left: ww
+    }, 5000, function() {
+        setTimeout(goLeft, 50);
+    });
+    }
+    function goLeft() {
+        $(".myVehicle").animate({
+        left: 0
+    }, 5000, function() {
+        setTimeout(goRight, 50);
+    });
+    }
+    setTimeout(goRight, 50);
 }
+
+//below works, below works, below works, below works
+// Vehicle.prototype.move = function() {
+//     this.div = $('.myVehicle');
+//     var ww = window.innerWidth;
+//     this.div.animate({left: ww + 'px'}, 5000);
+// }
+
 Vehicle.prototype.moveback = function() {
     this.div = $('.myVehicle');
     var ww = window.innerWidth;
@@ -33,7 +55,13 @@ function addVehicle() {
     var vehicle = new Vehicle('myVehicle');
     vehicle.insert();
     vehicleArray.push(vehicle);
-    //console.log('inside vehicle');
+}
+
+function deleteVehicle() {
+    this.div.addEventListener('dblclick', function() {
+        console.log('test');
+        //vehicleArray.splice[vehicle];
+    })
 }
 
 // Super Class Stop ----------------------------------------------------
@@ -60,7 +88,21 @@ Car.prototype.insert = function() {
 Car.prototype.move = function() {
     this.div = $('.myCar');
     var ww = window.innerWidth;
-    this.div.animate({left: ww + 'px'}, 5000); //Same as Vehicle speed
+    function goRight() {
+        $(".myCar").animate({
+        left: ww
+    }, 5000, function() {
+        setTimeout(goLeft, 50);
+    });
+    }
+    function goLeft() {
+        $(".myCar").animate({
+        left: 0
+    }, 5000, function() {
+        setTimeout(goRight, 50);
+    });
+    }
+    setTimeout(goRight, 50);
 }
 
 function addCar() {
@@ -69,8 +111,6 @@ function addCar() {
     vehicleArray.push(addCar);
     //console.log('inside car');
 }
-
-
 
 //Child Class COPCAR COPCAR COPCAR COPCAR COPCAR  ------------------------
 
@@ -89,18 +129,25 @@ CopCar.prototype.insert = function() {
     document.getElementById('gameArea').appendChild(this.div);
 
 }
+
 CopCar.prototype.move = function() {
     this.div = $('.myCopCar');
     var ww = window.innerWidth;
-    var wh = window.innerHeight;
-    //this.div.fadeTo(1000, 0.1).fadeTo(1000, 1.0);
-    this.div.animate({top: wh + 'px'}, 5000);
-        // var blnkCar = $('div');
-        //     function runIt() {
-        //         blnkCar.animate({opacity:'+=1'}, 400);
-        //         blnkCar.animate({opacity:'-=0.7'}, 400, runIt);
-        //     }
-        // runIt();
+    function goRight() {
+        $(".myCopCar").animate({
+        left: ww
+    }, 5000, function() {
+        setTimeout(goLeft, 50);
+    });
+    }
+    function goLeft() {
+        $(".myCopCar").animate({
+        left: 0
+    }, 1, function() {
+        setTimeout(goRight, 50);
+    });
+    }
+    setTimeout(goRight, 50);
 }
 
 function addCopCar() {
@@ -126,11 +173,28 @@ Motorcycle.prototype.insert = function() {
     this.div.style.top = Math.floor(Math.random() * (wh - 40)) + 'px';
     document.getElementById('gameArea').appendChild(this.div);
 }
+
 Motorcycle.prototype.move = function() {
     this.div = $('.myMotorcycle');
     var ww = window.innerWidth;
-    var wh = window.innerWidth;
-    this.div.animate({left: ww + 'px', top: wh + 'px'}, 2500); //Same as Vehicle speed
+    var wh = window.innerHeight;
+    function goRight() {
+        $(".myMotorcycle").animate({
+        left: ww,
+        top: wh
+    }, 5000, function() {
+        setTimeout(goLeft, 50);
+    });
+    }
+    function goLeft() {
+        $(".myMotorcycle").animate({
+        left: 0,
+        top: 0
+    }, 1, function() {
+        setTimeout(goRight, 50);
+    });
+    }
+    setTimeout(goRight, 50);
 }
 
 function addMotorcycle() {
@@ -158,8 +222,22 @@ Tank.prototype.insert = function() {
 }
 Tank.prototype.move = function() {
     this.div = $('.myTank');
-    var ww = window.innerWidth;
-    this.div.animate({left: ww + 'px'}, 10000); //Same as Vehicle speed
+    var wh = window.innerHeight;
+    function goDown() {
+        $(".myTank").animate({
+        top: wh
+    }, 10000, function() {
+        setTimeout(goUp, 50);
+    });
+    }
+    function goUp() {
+        $(".myTank").animate({
+        top: 0
+    }, 1, function() {
+        setTimeout(goDown, 50);
+    });
+    }
+    setTimeout(goDown, 50);
 }
 
 function addTank() {
