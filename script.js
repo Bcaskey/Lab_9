@@ -6,16 +6,18 @@ var Vehicle = function(className) {
 
 Vehicle.prototype.insert = function() {
     this.div.style.position = 'absolute';
+    this.div.id = 5;
+    var boxText = this.div.id;
+    this.div.innerHTML = boxText;
     var ww = window.innerWidth;
     var wh = window.innerHeight;
     this.div.style.left = Math.floor(Math.random() * (ww - 140)) + 'px';
     this.div.style.top = Math.floor(Math.random() * (wh - 100)) + 'px';
-    var num = '1';
-    this.div.innerHTML = '2';
-    console.log('Car Damage');
     this.move;
-    this.moveback;
     document.getElementById('gameArea').appendChild(this.div);
+    this.delete.call(this);// call(this) binds the function to this div. 
+                           // move doesnt need the bind, because on click
+                           // I am moving everything.    
 }
 
 Vehicle.prototype.move = function() {
@@ -37,31 +39,29 @@ Vehicle.prototype.move = function() {
     }
     setTimeout(goRight, 50);
 }
-
-//below works, below works, below works, below works
-// Vehicle.prototype.move = function() {
-//     this.div = $('.myVehicle');
-//     var ww = window.innerWidth;
-//     this.div.animate({left: ww + 'px'}, 5000);
-// }
-
-Vehicle.prototype.moveback = function() {
-    this.div = $('.myVehicle');
-    var ww = window.innerWidth;
-    this.div.animate({left: '10px'}, 5000);
+// NOT that delete needs a bind of .call(this) above. Because we are deleteing
+// on instance, not calling all like the move function.
+Vehicle.prototype.delete = function() {
+    this.div.onclick = function(e){
+        var x = e.target.id;
+        var y = x - 1;
+        e.target.innerHTML = y;
+        //damage = parseInt(damage, 10);
+        if (x > 1) {
+            var newID = x - 1;
+            e.target.id = newID;
+            //console.log(newID);
+        } else {
+         e.target.remove();
+         //console.log('test');   
+        }
+    }
 }
 
 function addVehicle() { 
     var vehicle = new Vehicle('myVehicle');
     vehicle.insert();
     vehicleArray.push(vehicle);
-}
-
-function deleteVehicle() {
-    this.div.addEventListener('dblclick', function() {
-        console.log('test');
-        //vehicleArray.splice[vehicle];
-    })
 }
 
 // Super Class Stop ----------------------------------------------------
@@ -75,16 +75,17 @@ Car.prototype = Object.create(Vehicle.prototype);
 Car.prototype.constructor = Car; //This is the function that calls car
 Car.prototype.insert = function() {
     this.div.style.position = 'absolute';
+    this.div.id = 2;
+    var boxText = this.div.id;
+    this.div.innerHTML = boxText;
     var ww = window.innerWidth;
     var wh = window.innerHeight;
     this.div.style.left = Math.floor(Math.random() * (ww - 140)) + 'px';
     this.div.style.top = Math.floor(Math.random() * (wh - 100)) + 'px';
-    var num = '1';
-    this.div.innerHTML = '2';
-    console.log('Car Damage');
     document.getElementById('gameArea').appendChild(this.div);
-
+    this.delete.call(this);
 }
+
 Car.prototype.move = function() {
     this.div = $('.myCar');
     var ww = window.innerWidth;
@@ -105,6 +106,23 @@ Car.prototype.move = function() {
     setTimeout(goRight, 50);
 }
 
+Car.prototype.delete = function() {
+    this.div.onclick = function(e){
+        var x = e.target.id;
+        var y = x - 1;
+        e.target.innerHTML = y;
+        //damage = parseInt(damage, 10);
+        if (x > 1) {
+            var newID = x - 1;
+            e.target.id = newID;
+            //console.log(newID);
+        } else {
+         e.target.remove();
+         //console.log('test');   
+        }
+    }
+}
+
 function addCar() {
     var addCar = new Car();
     addCar.insert();
@@ -122,12 +140,15 @@ CopCar.prototype = Object.create(Car.prototype);
 CopCar.prototype.constructor = CopCar;
 CopCar.prototype.insert = function() {
     this.div.style.position = 'absolute';
+    this.div.id = 3;
+    var boxText = this.div.id;
+    this.div.innerHTML = boxText;
     var ww = window.innerWidth;
     var wh = window.innerHeight;
     this.div.style.left = Math.floor(Math.random() * (ww - 140)) + 'px';
     this.div.style.top = Math.floor(Math.random() * (wh - 100)) + 'px';
     document.getElementById('gameArea').appendChild(this.div);
-
+    this.delete.call(this);
 }
 
 CopCar.prototype.move = function() {
@@ -150,6 +171,23 @@ CopCar.prototype.move = function() {
     setTimeout(goRight, 50);
 }
 
+CopCar.prototype.delete = function() {
+    this.div.onclick = function(e){
+        var x = e.target.id;
+        var y = x - 1;
+        e.target.innerHTML = y;
+        //damage = parseInt(damage, 10);
+        if (x > 1) {
+            var newID = x - 1;
+            e.target.id = newID;
+            //console.log(newID);
+        } else {
+         e.target.remove();
+         //console.log('test');   
+        }
+    }
+}
+
 function addCopCar() {
     var vehicle = new CopCar();
     vehicle.insert();
@@ -167,11 +205,15 @@ Motorcycle.prototype = Object.create(Vehicle.prototype);
 Motorcycle.prototype.constructor = Motorcycle; //This is the function that calls car
 Motorcycle.prototype.insert = function() {
     this.div.style.position = 'absolute';
+    this.div.id = 1;
+    var boxText = this.div.id;
+    this.div.innerHTML = boxText;
     var ww = window.innerWidth;
     var wh = window.innerHeight;
     this.div.style.left = Math.floor(Math.random() * (ww - 60)) + 'px';
     this.div.style.top = Math.floor(Math.random() * (wh - 40)) + 'px';
     document.getElementById('gameArea').appendChild(this.div);
+    this.delete.call(this);
 }
 
 Motorcycle.prototype.move = function() {
@@ -197,11 +239,27 @@ Motorcycle.prototype.move = function() {
     setTimeout(goRight, 50);
 }
 
+Motorcycle.prototype.delete = function() {
+    this.div.onclick = function(e){
+        var x = e.target.id;
+        var y = x - 1;
+        e.target.innerHTML = y;
+        //damage = parseInt(damage, 10);
+        if (x > 1) {
+            var newID = x - 1;
+            e.target.id = newID;
+            //console.log(newID);
+        } else {
+         e.target.remove();
+         //console.log('test');   
+        }
+    }
+}
+
 function addMotorcycle() {
     var vehicle = new Motorcycle();
     vehicle.insert();
     vehicleArray.push(vehicle);
-    //console.log('inside Motorcycle');
 }
 
 // Child Class TANK TANK TANK TANK TANK --------------------------------
@@ -211,14 +269,18 @@ var Tank = function () {
 }
 
 Tank.prototype = Object.create(Vehicle.prototype);
-Tank.prototype.constructor = Motorcycle; //This is the function that calls car
+Tank.prototype.constructor = Motorcycle; 
 Tank.prototype.insert = function() {
     this.div.style.position = 'absolute';
+    this.div.id = 10;
+    var boxText = this.div.id;
+    this.div.innerHTML = boxText;
     var ww = window.innerWidth;
     var wh = window.innerHeight;
     this.div.style.left = Math.floor(Math.random() * (ww - 140)) + 'px';
     this.div.style.top = Math.floor(Math.random() * (wh - 100)) + 'px';
     document.getElementById('gameArea').appendChild(this.div);
+    this.delete.call(this);
 }
 Tank.prototype.move = function() {
     this.div = $('.myTank');
@@ -240,6 +302,23 @@ Tank.prototype.move = function() {
     setTimeout(goDown, 50);
 }
 
+Tank.prototype.delete = function() {
+    this.div.onclick = function(e){
+        var x = e.target.id;
+        var y = x - 1;
+        e.target.innerHTML = y;
+        //damage = parseInt(damage, 10);
+        if (x > 1) {
+            var newID = x - 1;
+            e.target.id = newID;
+            //console.log(newID);
+        } else {
+         e.target.remove();
+         //console.log('test');   
+        }
+    }
+}
+
 function addTank() {
     var vehicle = new Tank();
     vehicle.insert();
@@ -254,13 +333,5 @@ var vehicleArray = [];
 function startGame() {
     for (var i = 0; i < vehicleArray.length; i++) {
         vehicleArray[i].move();
-    }
-}
-
-function reverse() {
-    if (vehicleArray[i] instanceof Car){
-            for (var i = 0; i < vehicleArray.length; i++) {
-            vehicleArray[i].moveback();
-        }
     }
 }
